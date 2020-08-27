@@ -34,9 +34,11 @@
             <td>
               <%= category[i].name %>
             </td>
+            <td>
             <form action="/admin/category/<%= category[i].id %>?_method=DELETE" method="POST">
-            <td><a href="javascript:void()" type="button" class="btn btn-warning btn-circle btn-sm button-update" data-id="<%= category[i].id %>" data-name="<%= category[i].name %>"><i class="fas fa-edit"></i>
-              <Button type="submit"  class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></Button>
+            <a href="javascript:void()" type="button" class="btn btn-warning btn-circle btn-sm button-update" 
+            data-id="<%= category[i].id %>" data-name="<%= category[i].name %>"><i class="fas fa-edit"></i></a>
+              <Button type="submit"  class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></Button>
               </form>
               </td>
               
