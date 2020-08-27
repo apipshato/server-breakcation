@@ -83,8 +83,20 @@ module.exports = {
 
   addBank: async (req, res) => {
     try {
-        const {name, nameBank, nomorRekening}= req.body;
-    } catch (error) {}
+      const { name, nameBank, nomorRekening } = req.body;
+      await Bank.create({
+        name,
+        nameBank,
+        nomorRekening,
+      });
+      req.flash("alertMessage", "Success Add Bank");
+      req.flash("alertStatus", "success");
+      res.redirect("/admin/bank");
+    } catch (error) {
+      req.flash("alertMessage", `${error.message}`);
+      req.flash("alertStatus", "danger");
+      res.redirect("/admin/bank");
+    }
   },
   viewItem: (req, res) => {
     res.render("admin/item/view_item", {
