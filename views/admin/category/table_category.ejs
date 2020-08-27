@@ -7,7 +7,7 @@
       data-toggle="modal"
       data-target="#add-modal"
     >
-     <i class="fas fa-plus"></i>
+      <i class="fas fa-plus"></i>
     </button>
   </div>
   <div class="card-body">
@@ -28,20 +28,26 @@
         <tbody>
           <% for(let i=0; i< category.length; i++){ %>
           <tr>
+            <td><%= i + 1 %></td>
+            <td><%= category[i].name %></td>
             <td>
-              <%= i + 1 %>
-            </td>
-            <td>
-              <%= category[i].name %>
-            </td>
-            <td>
-            <form action="/admin/category/<%= category[i].id %>?_method=DELETE" method="POST">
-            <a href="javascript:void()" type="button" class="btn btn-warning btn-circle btn-sm button-update" 
-            data-id="<%= category[i].id %>" data-name="<%= category[i].name %>"><i class="fas fa-edit"></i></a>
-              <Button type="submit"  class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></Button>
+              <form
+                action="/admin/category/<%= category[i].id %>?_method=DELETE"
+                method="POST"
+              >
+                <a
+                  href="javascript:void()"
+                  type="button"
+                  class="btn btn-warning btn-circle btn-sm button-update"
+                  data-id="<%= category[i].id %>"
+                  data-name="<%= category[i].name %>"
+                  ><i class="fas fa-edit"></i
+                ></a>
+                <Button type="submit" class="btn btn-danger btn-circle btn-sm"
+                  ><i class="fas fa-trash"></i
+                ></Button>
               </form>
-              </td>
-              
+            </td>
           </tr>
           <% } %>
         </tbody>
