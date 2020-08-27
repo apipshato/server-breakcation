@@ -88,6 +88,7 @@ module.exports = {
         name,
         nameBank,
         nomorRekening,
+        imageUrl : `images/${req.file.filename}`
       });
       req.flash("alertMessage", "Success Add Bank");
       req.flash("alertStatus", "success");
