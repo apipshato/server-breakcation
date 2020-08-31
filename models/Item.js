@@ -19,7 +19,7 @@ const itemSchema = new mongoose.Schema({
   },
   isPopular: {
     type: Boolean,
-    required: true,
+    default: false,
   },
   description: {
     type: String,

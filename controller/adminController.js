@@ -1,7 +1,9 @@
 const Category = require("../models/Category");
 const Bank = require("../models/Bank");
+const Image = require("../models/Image");
 const path = require('path');
 const fs = require('fs-extra');
+const Item = require("../models/Item");
 
 module.exports = {
   viewDasboard: (req, res) => {
@@ -74,7 +76,7 @@ module.exports = {
       const alertStatus = req.flash('alertStatus');
       const alert = { message: alertMessage, status: alertStatus };
       res.render('admin/bank/view_bank', {
-        title: "Staycation | Bank",
+        title: "Breakcation | Bank",
         alert,
         bank,
         user: req.session.user
@@ -151,10 +153,49 @@ module.exports = {
     }
   },
 
-  viewItem: (req, res) => {
-    res.render("admin/item/view_item", {
-      title: "Breakcation | Item",
-    });
+  viewItem: async (req, res) => {
+    try {
+      const category = await Category.find();
+      res.render("admin/item/view_item", {
+        title: "Breakcation | Item",
+        category
+      });
+      
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/admin/item');
+      
+    }
+  
+  },
+  addItem: async (req, res)=>{
+    try {
+      const {categoryId, title, price, city, about} = req.body;
+      if(req.files.length > 0){
+        const category =await Category.findOne({_id : categoryId});
+        const newItem ={
+          categoryId : category._id,
+          title,
+          description: about,
+          price,
+          city
+        }
+        const item = await Item.create(newItem);
+        category.itemId.push({_id : item._id});
+        await category.save();
+        for (let i = 0; i < req.files.length; i++) {
+         
+          const imageSave= await Image.create({imageUrl :`iamge/${req.files.filename}`});
+          
+        }
+      }
+      
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/admin/item');
+    }
   },
   viewBooking: (req, res) => {
     res.render("admin/booking/view_booking", {
