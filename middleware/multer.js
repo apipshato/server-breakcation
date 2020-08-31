@@ -1,6 +1,6 @@
 const multer = require("multer");
 const path = require("path");
-const fs = require("fs");
+// const fs = require("fs");
 // import uuid from "uuid/v4";
 
 const storageMultiple = multer.diskStorage({
@@ -33,13 +33,21 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({
+const uploadSingle = multer({
   storage: storage,
   limits: { fileSize: 1000000 },
   fileFilter: function (req, file, cb) {
     checkFileType(file, cb);
   }
 }).single("image");
+
+const uploadMultiples = multer({
+  storage: storage,
+  //limits: { fileSize: 1000000 },
+  fileFilter: function (req, file, cb) {
+    checkFileType(file, cb);
+  }
+}).array("image");
 
 // // Check file Type
 function checkFileType(file, cb) {
@@ -58,4 +66,4 @@ function checkFileType(file, cb) {
   }
 }
 
-module.exports = { uploadMultiple, upload };
+module.exports = { uploadSingle, uploadMultiples };
