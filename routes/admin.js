@@ -20,6 +20,10 @@ router.delete('/bank/:id', adminController.deleteBank);
 //endpoint item
 router.get('/item', adminController.viewItem);
 router.post('/item', uploadMultiples,  adminController.addItem);
+router.get('/item/show-image/:id', adminController.showImageItem);
+router.get('/item/:id', adminController.showEditItem);
+router.put('/item/:id', uploadMultiples, adminController.editItem);
+router.delete('/item/:id/delete', adminController.deleteItem);
 
 router.get('/booking', adminController.viewBooking);
 
