@@ -21,23 +21,21 @@
         <h1 class="h3 mb-4 text-gray-800">Detail Item</h1>
         <!-- End Heading -->
 
-    
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#show-feature" role="tab" aria-controls="home"
-              aria-selected="true">Show Feature</a>
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#show-feature" role="tab"
+              aria-controls="home" aria-selected="true">Show Feature</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#show-activity" role="tab" aria-controls="profile"
-              aria-selected="false">Show Activity</a>
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#show-activity" role="tab"
+              aria-controls="profile" aria-selected="false">Show Activity</a>
           </li>
 
         </ul>
         <div class="tab-content" id="myTabContent">
-        <%- include('show_feature.ejs') %> 
-        <%- include('show_activity.ejs') %> 
+          <%- include('show_feature.ejs') %>
+          <%- include('show_activity.ejs') %>
         </div>
-
        
 
 
@@ -79,11 +77,22 @@
     </div>
   </div>
 </div>
-
+<%- include('show_modal_feature.ejs') %>
 <%- include('../../../partials/js.ejs') %>
 <script>
-    $(document).ready(function(){
-        $('#dataTableActivity').DataTable();
-    })
+   $(document).ready(function () {
+    $('#dataTableActivity').DataTable();
+  })
   CKEDITOR.replace('about');
+  $('#dataTable').on('click', '.button-update', function () {
+    let id = $(this).data('id');
+    let name = $(this).data('name');
+    let qty = $(this).data('qty');
+    $('#edit-modal').modal('show');
+    $('.id').val(id);
+    $('.name').val(name);
+    $('.qty').val(qty);
+    
+ 
+  })
 </script>
