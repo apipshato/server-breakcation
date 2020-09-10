@@ -4,6 +4,11 @@ const { viewBank, addCategory } = require('../controller/adminController');
 const { route } = require('.');
 const {uploadSingle, uploadMultiple}= require('../middleware/multer');
 
+
+//enpoint Signin
+
+router.get('/signin', adminController.viewSignin);
+
 router.get('/dashboard', adminController.viewDasboard);
 //endpoint category
 router.get('/category', adminController.viewCategory);
@@ -29,7 +34,12 @@ router.delete('/item/:id/delete', adminController.deleteItem);
 router.get('/item/show-detail-item/:itemId', adminController.viewDetailItem);
 router.post('/item/add/feature',uploadSingle, adminController.addFeature);
 router.put('/item/update/feature',uploadSingle, adminController.editFeature);
+router.delete('/item/:itemId/feature/:id',uploadSingle, adminController.deleteFeature);
 
+//endpoint activity
+router.post('/item/add/activity',uploadSingle, adminController.addActivity);
+router.put('/item/update/activity',uploadSingle, adminController.editActivity);
+router.delete('/item/:itemId/activity/:id',uploadSingle, adminController.deleteActivity);
 
 router.get('/booking', adminController.viewBooking);
 
