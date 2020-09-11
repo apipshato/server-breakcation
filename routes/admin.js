@@ -3,13 +3,17 @@ const adminController =require('../controller/adminController');
 const { viewBank, addCategory } = require('../controller/adminController');
 const { route } = require('.');
 const {uploadSingle, uploadMultiple}= require('../middleware/multer');
+const auth = require('../middleware/auth')
 
 
 //enpoint Signin
 
 router.get('/signin', adminController.viewSignin);
-
+router.post('/signin', adminController.actionSignin);
+router.use(auth);
+router.get('/logout', adminController.actionLogout);
 router.get('/dashboard', adminController.viewDasboard);
+
 //endpoint category
 router.get('/category', adminController.viewCategory);
 router.post('/category', adminController.addCategory);
