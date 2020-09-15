@@ -1,5 +1,5 @@
 const Item = require("../models/Item");
-const item = require("../models/Item");
+
 const Treasure = require('../models/Activity');
 const Treveler = require('../models/Booking');
 const Category = require('../models/Category');
