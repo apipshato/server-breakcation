@@ -9,7 +9,7 @@ const flash = require("connect-flash");
 
 //import mongoose
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/db_breakcation", {
+mongoose.connect("mongodb+srv://fifto:bwamern@cluster0.d5fcq.mongodb.net/db_breakcation?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
