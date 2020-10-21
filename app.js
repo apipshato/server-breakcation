@@ -25,6 +25,7 @@ const adminRouter = require("./routes/admin");
 const apiRouter = require("./routes/api")
 
 var app = express();
+app.use(cors());
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -52,7 +53,7 @@ app.use(
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use(cors());
+
 //admin
 app.use("/admin", adminRouter);
 app.use("/api/v1/member", apiRouter);
